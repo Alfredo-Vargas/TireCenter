@@ -13,7 +13,7 @@ DoublyLinkedListOfTires::~DoublyLinkedListOfTires()
 
 void DoublyLinkedListOfTires::addTire(unsigned* ltn)
 {
-	std::string name, manufacturer;
+	std::string name, manufacturer, temp;
 	int stock;
 	float price, diameter, width, height;
 	char speedIndex;
@@ -26,10 +26,35 @@ void DoublyLinkedListOfTires::addTire(unsigned* ltn)
 	ptn = new TireNode();
 
 	/* We populate the new Tire Node*/
-	// MAYBE IMPLEMENT TRY CATCH HERE??!! 
-	std::cout << "Respect the format and order when inserting the entries (space separated):" << std::endl;
-	std::cout << "name manufacturer stock diameter price width height speedIndex(char) seasson(0 for winter 1 for summer)" << std::endl;
-	std::cin >> name >> manufacturer >> stock >> diameter >> price >> width >> height >> speedIndex >> seasson;
+	std::cout << "Please insert the attributes of the new Tire one by one: " << std::endl;
+	std::cout << "Name: ";
+	std::cin.ignore();
+	getline(std::cin, name);
+	std::cout << std::endl;
+	std::cout << "Manufacturer: ";
+	getline(std::cin, manufacturer);
+	std::cout << std::endl;
+	std::cout << "Stock: ";
+	std::cin >> stock;
+	std::cout << std::endl;
+	std::cout << "Diameter (milimeters): ";
+	std::cin >> diameter;
+	std::cout << std::endl;
+	std::cout << "Price (euros): ";
+	std::cin >> price;
+	std::cout << std::endl;
+	std::cout << "Width (milimeters): ";
+	std::cin >> width;
+	std::cout << std::endl;
+	std::cout << "Height (milimeters): ";
+	std::cin >> height;
+	std::cout << std::endl;
+	std::cout << "Speed Index (single letter from A - Y): ";
+	std::cin >> speedIndex;
+	std::cout << std::endl;
+	std::cout << "Seasson (0 winter, 1 summer): ";
+	std::cin >> seasson;
+	std::cout << std::endl;
 	ptn->setArticleName(name);
 	ptn->setArticleManufacturer(manufacturer);
 	ptn->setStockOfArticle(stock);
@@ -91,7 +116,7 @@ void DoublyLinkedListOfTires::deleteTire(void)
 void DoublyLinkedListOfTires::displayTires(void)
 {
 	TireNode* Current = head->Next;					// We skip the dummyHead
-	unsigned cw1 = 16, cw2 = 8, cw3 = 4;			// Column width1, widht2, width3
+	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24;			// Column width1, widht2, width3
 	if (Current->getID() == tail->getID())
 	{
 		std::cout << std::endl;
@@ -101,12 +126,12 @@ void DoublyLinkedListOfTires::displayTires(void)
 	{
 		std::cout << std::endl;
 		std::cout << "----------------------------------------------------------------------------------------" << std::endl;
-		std::cout << std::setw(cw3) << "ID" << std::setw(cw1) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw2) << "Stock"
+		std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw2) << "Stock"
 			<< std::setw(cw2) << "Diam" << std::setw(cw2) << "Price" << std::setw(cw2) << "Width" << std::setw(cw2) << "Height" << std::setw(cw3) << "SI" << std::setw(cw3) << "Se" << std::endl;
 		std::cout << "----------------------------------------------------------------------------------------" << std::endl;
 		while (Current->getID() != tail->getID())
 		{
-			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw1) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
+			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw4) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
 				<< std::setw(cw2) << Current->getStockOfArticle() << std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
 				<< std::setw(cw2) << Current->getWidth() << std::setw(cw2) << Current->getHeight() << std::setw(cw3) << Current->getSpeedIndex() << std::setw(cw3) << Current->getSeasson() << std::endl;
 			std::cout << "----------------------------------------------------------------------------------------" << std::endl;

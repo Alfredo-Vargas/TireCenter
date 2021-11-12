@@ -3,3 +3,4 @@ ti2 Turanza(x2) Bridgestone 63 275 439 0 21 107 V 0
 ti3 AudiA4(x2) Continental 8 250 613 0 25.5 98.5 H 1
 ti4 Euroall(x4) Falken 4 220 1531 0 21 114.5 Y 0
 ti5 FiatA4(x4) TorinoM 16 245 666 0 29 100 V 1
+ti6 Bridgestone315(x2) Bridgestone 45 22.5 850 0 315 70 M 1
