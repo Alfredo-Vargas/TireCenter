@@ -4,7 +4,8 @@ This code is part of the assignment of the Course: Objected Oriented Programming
 # NOTE:
 For training purposes we implemented from scratch a Double Linked List.
 Real implementations of this program should use the built-in list data type in C++ or even better just a vector:
-#Check reasons why vectors are better than Linked Lists: 
+# Check reasons why vectors are better than Linked Lists:
+
 https://www.youtube.com/watch?v=YQs6IC-vgmo&t=74s&ab_channel=AlessandroStamatto
 https://www.youtube.com/watch?v=DyG9S9nAlUM&t=2s&ab_channel=Computerphile
 https://www.geeksforgeeks.org/linked-list-vs-array/
