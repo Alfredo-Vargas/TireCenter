@@ -5,10 +5,9 @@ This code is part of the assignment of the Course: Objected Oriented Programming
 For training purposes we implemented from scratch a Double Linked List.
 Real implementations of this program should use the built-in list data type in C++ or even better just a vector:
 # Check reasons why vectors are better than Linked Lists:
-
-https://www.youtube.com/watch?v=YQs6IC-vgmo&t=74s&ab_channel=AlessandroStamatto
-https://www.youtube.com/watch?v=DyG9S9nAlUM&t=2s&ab_channel=Computerphile
-https://www.geeksforgeeks.org/linked-list-vs-array/
+# https://www.youtube.com/watch?v=YQs6IC-vgmo&t=74s&ab_channel=AlessandroStamatto
+# https://www.youtube.com/watch?v=DyG9S9nAlUM&t=2s&ab_channel=Computerphile
+# https://www.geeksforgeeks.org/linked-list-vs-array/
 #
 # THE OBJECTIVE OF THE PROGRAM:
 A tire dealer would like a new software package for their administration. In it they would like to manage their customer base, stock and invoicing. As a small software company you would like to win this order. For this it is necessary to submit a quotation to the customer which includes a use case diagram to show the functionality to the customer. You also need this to facilitate subsequent discussions. Internally in your company, it is also necessary to draw up a class diagram to divide the work and to estimate the duration and thus the cost of the project.
