@@ -1,0 +1,20 @@
+in1
+2021 11 6 22 54 7
+ci1
+Steven
+Van Gucht
+Grote Markt 1 2000
+0
+ti1 BMW641M(x4) Michelin 3 255 2395 0 28 115 W 1
+EndOfShoppingCartOfTires
+EndOfShoppingCartOfRims
+in4
+2021 11 8 17 43 53
+ci2
+Marc
+Van Ranst
+Paardenmarkt 1 2000
+0
+EndOfShoppingCartOfTires
+ri1 DESIGN8X18(x4) BORBET 1 22.5 258 1 28 0 black 
+EndOfShoppingCartOfRims

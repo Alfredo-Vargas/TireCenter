@@ -1,0 +1,25 @@
+ci1
+Steven
+Van Gucht
+Grote Markt 1 2000
+0
+ci2
+Marc
+Van Ranst
+Paardenmarkt 1 2000
+0
+ci3
+DMT
+DMT@architecten.be
+Meirbrug 1 2000
+1
+ci4
+Nokia
+nokia@nokia.com
+Copernicuslaan 50 2000
+1
+ci5
+Lieven
+Scheire
+Sint-Veerleplein 11 9000
+0
