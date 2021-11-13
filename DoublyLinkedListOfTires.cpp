@@ -28,7 +28,7 @@ void DoublyLinkedListOfTires::addTire(unsigned* ltn)
 	/* We populate the new Tire Node*/
 	std::cout << "Please insert the attributes of the new Tire one by one: " << std::endl;
 	std::cout << "Name: ";
-	std::cin.ignore();
+	std::cin.ignore();		// to clear the input buffer of previous statements ('\n' of previous statements)
 	getline(std::cin, name);
 	std::cout << std::endl;
 	std::cout << "Manufacturer: ";
@@ -36,24 +36,81 @@ void DoublyLinkedListOfTires::addTire(unsigned* ltn)
 	std::cout << std::endl;
 	std::cout << "Stock: ";
 	std::cin >> stock;
+	/* We check if there is an error in the input or the value  */
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Stock. Please insert an integer: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> stock;
+	}
 	std::cout << std::endl;
 	std::cout << "Diameter (milimeters): ";
 	std::cin >> diameter;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Diameter. Please insert the diameter in milimeters of this new tire: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> diameter;
+	}
 	std::cout << std::endl;
 	std::cout << "Price (euros): ";
 	std::cin >> price;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Price. Please insert the price in euro: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> price;
+	}
 	std::cout << std::endl;
 	std::cout << "Width (milimeters): ";
 	std::cin >> width;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Width. Please insert the width in milimeters: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> width;
+	}
 	std::cout << std::endl;
 	std::cout << "Height (milimeters): ";
 	std::cin >> height;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Height. Please insert the height in milimeters: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> height;
+	}
 	std::cout << std::endl;
 	std::cout << "Speed Index (single letter from A - Y): ";
 	std::cin >> speedIndex;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Speed Index. Please insert the a single letter from A - Y: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> speedIndex;
+	}
 	std::cout << std::endl;
 	std::cout << "Seasson (0 winter, 1 summer): ";
 	std::cin >> seasson;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Seasson. Please insert 0 for winter and 1 for summer: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> seasson;
+	}
 	std::cout << std::endl;
 	ptn->setArticleName(name);
 	ptn->setArticleManufacturer(manufacturer);
@@ -115,8 +172,8 @@ void DoublyLinkedListOfTires::deleteTire(void)
 
 void DoublyLinkedListOfTires::displayTires(void)
 {
-	TireNode* Current = head->Next;					// We skip the dummyHead
-	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24;			// Column width1, widht2, width3
+	TireNode* Current = head->Next;							// We skip the dummyHead
+	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24, cw5 = 12;			// Column widths
 	if (Current->getID() == tail->getID())
 	{
 		std::cout << std::endl;
@@ -126,13 +183,13 @@ void DoublyLinkedListOfTires::displayTires(void)
 	{
 		std::cout << std::endl;
 		std::cout << "----------------------------------------------------------------------------------------" << std::endl;
-		std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw2) << "Stock"
+		std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw5) << "Quantity"
 			<< std::setw(cw2) << "Diam" << std::setw(cw2) << "Price" << std::setw(cw2) << "Width" << std::setw(cw2) << "Height" << std::setw(cw3) << "SI" << std::setw(cw3) << "Se" << std::endl;
 		std::cout << "----------------------------------------------------------------------------------------" << std::endl;
 		while (Current->getID() != tail->getID())
 		{
 			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw4) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
-				<< std::setw(cw2) << Current->getStockOfArticle() << std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
+				<< std::setw(cw5) << Current->getStockOfArticle() << std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
 				<< std::setw(cw2) << Current->getWidth() << std::setw(cw2) << Current->getHeight() << std::setw(cw3) << Current->getSpeedIndex() << std::setw(cw3) << Current->getSeasson() << std::endl;
 			std::cout << "----------------------------------------------------------------------------------------" << std::endl;
 			Current = Current->Next;
@@ -181,7 +238,7 @@ void DoublyLinkedListOfTires::loadFromFile(void)
 {
 	TireNode* tempTire, * beforeTemp;
 	std::ifstream fromTiresFile;
-	std::string id, name, manufacturer;
+	std::string id, name, manufacturer, trash;
 	int stock;
 	float diameter, price, width, height;
 	char speedIndex;
@@ -194,11 +251,11 @@ void DoublyLinkedListOfTires::loadFromFile(void)
 	}
 	else
 	{
-		fromTiresFile >> id;				// last line is an empty line in the file
+		getline(fromTiresFile, id);			// last line is an empty line in the file
 		while (!fromTiresFile.eof() && id.length() != 0)
 		{
-			fromTiresFile >> name;
-			fromTiresFile >> manufacturer;
+			getline(fromTiresFile, name);
+			getline(fromTiresFile, manufacturer);
 			fromTiresFile >> stock;
 			fromTiresFile >> diameter;
 			fromTiresFile >> price;
@@ -228,7 +285,8 @@ void DoublyLinkedListOfTires::loadFromFile(void)
 			tempTire->Prev = beforeTemp;
 			tail->Prev = tempTire;
 
-			fromTiresFile >> id;
+			getline(fromTiresFile, trash);	// to ignore the last '\n'
+			getline(fromTiresFile, id);
 		}
 		fromTiresFile.close();
 	}
@@ -249,7 +307,7 @@ void DoublyLinkedListOfTires::saveToFile(void)
 		tempTire = head->Next;
 		while (tempTire->getID() != tail->getID())
 		{
-			toTiresFile << tempTire->getID() << " " << tempTire->getArticleName() << " " << tempTire->getArticleManufacturer() << " "
+			toTiresFile << tempTire->getID() << std::endl << tempTire->getArticleName() << std::endl << tempTire->getArticleManufacturer() << std::endl
 				<< tempTire->getStockOfArticle() << " " << tempTire->getDiameterOfArticle() << " " << tempTire->getPriceOfArticle() << " "
 				<< tempTire->getTypeOfArticle() << " " << tempTire->getWidth() << " " << tempTire->getHeight() << " " << tempTire->getSpeedIndex() << " "
 				<< tempTire->getSeasson() << std::endl;
