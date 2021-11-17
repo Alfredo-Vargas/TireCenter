@@ -1,4 +1,5 @@
 #include <fstream>
+#include <string>		// to use the function getline
 #include <iomanip>		// for simplifying printing out 
 #include "DoublyLinkedListOfRims.h"
 
@@ -12,21 +13,94 @@ DoublyLinkedListOfRims::~DoublyLinkedListOfRims()
 
 void DoublyLinkedListOfRims::addRim(unsigned* lrn)
 {
-	std::string name, manufacturer, color;
+	std::string name, manufacturer, color, temp;
 	int stock;
 	float price, diameter, width;
 	unsigned material;
 
-	// We use two pointers one for head and another to point to new TireNode
+	// We use two pointers one for head and another to point to new RimNode
 	RimNode* LastRim = tail->Prev, *ptn;
 
 	// We allocate new memory for the new RimNode
 	ptn = new RimNode();
 
 	/* We populate the new Rim Node */
-	std::cout << "Respect the format when inserting the entries (space separated), material is 0 for steel and 1 for aluminium :" << std::endl;
-	std::cout << "name manufacturer stock diameter price(float) width(float) material color" << std::endl;
-	std::cin >> name >> manufacturer >> stock >> diameter >> price >> width >> material >> color;
+	std::cout << "Please insert the attributes of the new Rim one by one: " << std::endl;
+	std::cout << "Name: ";
+	std::cin.ignore();		// to clear the input buffer of previous statements ('\n' of previous statements)
+	getline(std::cin, name);
+	std::cout << std::endl;
+	std::cout << "Manufacturer: ";
+	getline(std::cin, manufacturer);
+	std::cout << std::endl;
+	std::cout << "Stock: ";
+	std::cin >> stock;
+	/* We check if there is an error in the input or the value  */
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Stock. Please insert an integer: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> stock;
+	}
+	std::cout << std::endl;
+	std::cout << "Diameter (milimeters): ";
+	std::cin >> diameter;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Diameter. Please insert the diameter in milimeters of this new tire: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> diameter;
+	}
+	std::cout << std::endl;
+	std::cout << "Price (euros): ";
+	std::cin >> price;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Price. Please insert the price in euro: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> price;
+	}
+	std::cout << std::endl;
+	std::cout << "Width (inches): ";
+	std::cin >> width;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Width. Please insert the width in inches: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> width;
+	}
+	std::cout << std::endl;
+	std::cout << "Material (0 steel, 1 aluminium): ";
+	std::cin >> material;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Material. Please insert the Material number (0 steel, 1 aluminium): ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> material;
+	}
+	std::cout << std::endl;
+	std::cout << "Color: ";
+	std::cin >> color;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected while giving the Color. Please insert the Color: ";
+
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> color;
+	}
+	std::cout << std::endl;
+
 	ptn->setArticleName(name);
 	ptn->setArticleManufacturer(manufacturer);
 	ptn->setStockOfArticle(stock);
@@ -86,7 +160,7 @@ void DoublyLinkedListOfRims::deleteRim(void)
 void DoublyLinkedListOfRims::displayRims(void)
 {
 	RimNode* Current = head->Next;	// We skip the dummyHead
-	unsigned cw1 = 16, cw2 = 8, cw3 = 4;						// Column width1, widht2, width3
+	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24;						// Column width1, widht2, width3
 	if (Current->getID() == tail->getID())
 	{
 		std::cout << "Nothing to print, the List of Rims is Empty!" << std::endl;
@@ -95,13 +169,13 @@ void DoublyLinkedListOfRims::displayRims(void)
 	{
 		std::cout << std::endl;
 		std::cout << "------------------------------------------------------------------------------------" << std::endl;
-		std::cout << std::setw(cw3) << "ID" << std::setw(cw1) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw2) << "Stock"
-			<< std::setw(cw2) << "Diam" << std::setw(cw2) << "Price" << std::setw(cw2) << "Width" << std::setw(cw3) << "Mat" << std::setw(cw2) << "Color" << std::endl;
+		std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Name" << std::setw(cw1) << "Manufacturer"	<< std::setw(cw2) << "Diam" 
+		<< std::setw(cw2) << "Price" << std::setw(cw2) << "Width" << std::setw(cw3) << "Mat" << std::setw(cw2) << "Color" << std::endl;
 		std::cout << "------------------------------------------------------------------------------------" << std::endl;
 		while (Current->getID() != tail->getID())
 		{
-			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw1) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
-				<< std::setw(cw2) << Current->getStockOfArticle() << std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
+			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw4) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
+				<< std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
 				<< std::setw(cw2) << Current->getWidth() << std::setw(cw3) << Current->getMaterial() << std::setw(cw2) << Current->getColor() << std::endl;
 			std::cout << "------------------------------------------------------------------------------------" << std::endl;
 			Current = Current->Next;
@@ -146,7 +220,7 @@ void DoublyLinkedListOfRims::loadFromFile(void)
 {
 	RimNode* tempRim, * beforeTemp;
 	std::ifstream fromRimsFile;
-	std::string id, name, manufacturer, color;
+	std::string id, name, manufacturer, color, trash;
 	int stock;
 	float diameter, price, width;
 	unsigned type, material;
@@ -158,11 +232,11 @@ void DoublyLinkedListOfRims::loadFromFile(void)
 	}
 	else
 	{
-		fromRimsFile >> id;				// last line is an empty line in the file
+		getline(fromRimsFile, id);				// last line is an empty line in the file
 		while (!fromRimsFile.eof() && id.length() != 0)
 		{
-			fromRimsFile >> name;
-			fromRimsFile >> manufacturer;
+			getline(fromRimsFile, name);
+			getline(fromRimsFile, manufacturer);
 			fromRimsFile >> stock;
 			fromRimsFile >> diameter;
 			fromRimsFile >> price;
@@ -190,7 +264,8 @@ void DoublyLinkedListOfRims::loadFromFile(void)
 			tempRim->Prev = beforeTemp;
 			tail->Prev = tempRim;
 
-			fromRimsFile >> id;
+			getline(fromRimsFile, trash);	// to ignore the last '\n'
+			getline(fromRimsFile, id);
 		}
 		fromRimsFile.close();
 	}
@@ -211,7 +286,7 @@ void DoublyLinkedListOfRims::saveToFile(void)
 		tempRim = head->Next;
 		while (tempRim->getID() != tail->getID())
 		{
-			toRimsFile << tempRim->getID() << " " << tempRim->getArticleName() << " " << tempRim->getArticleManufacturer() << " "
+			toRimsFile << tempRim->getID() << std::endl << tempRim->getArticleName() << std::endl << tempRim->getArticleManufacturer() << std::endl
 				<< tempRim->getStockOfArticle() << " " << tempRim->getDiameterOfArticle() << " " << tempRim->getPriceOfArticle() << " "
 				<< tempRim->getTypeOfArticle() << " " << tempRim->getWidth() << " " << tempRim->getMaterial() << " " << tempRim->getColor() << " " << std::endl;
 			tempRim = tempRim->Next;

@@ -1,23 +1,23 @@
 ti1
-BMW641M(x4)
+BMW 641M
 Michelin
-36 255 2395 0 28 115 W 1
+36 25.5 695 0 28 115 W 1
 ti2
-Turanza(x2)
+Turanza
 Bridgestone
-63 275 439 0 21 107 V 0
+63 27.5 239 0 21 107 V 0
 ti3
-AudiA4(x2)
+Audi A4
 Continental
-8 250 613 0 25.5 98.5 H 1
+8 25 313 0 25.5 98.5 H 1
 ti4
-Euroall(x4)
+Euroall
 Falken
-4 220 1531 0 21 114.5 Y 0
+4 22 331 0 21 114.5 Y 0
 ti5
-FiatA4(x4)
+Fiat A4
 TorinoM
-16 245 666 0 29 100 V 1
+16 24.5 466 0 29 100 V 1
 ti7
 Bridgestone 315
 Bridgestone
