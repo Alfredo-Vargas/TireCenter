@@ -182,16 +182,16 @@ void DoublyLinkedListOfTires::displayTires(void)
 	else
 	{
 		std::cout << std::endl;
-		std::cout << "----------------------------------------------------------------------------------------" << std::endl;
+		std::cout << "--------------------------------------------------------------------------------------------------" << std::endl;
 		std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw5) << "Quantity"
 			<< std::setw(cw2) << "Diam" << std::setw(cw2) << "Price" << std::setw(cw2) << "Width" << std::setw(cw2) << "Height" << std::setw(cw3) << "SI" << std::setw(cw3) << "Se" << std::endl;
-		std::cout << "----------------------------------------------------------------------------------------" << std::endl;
+		std::cout << "--------------------------------------------------------------------------------------------------" << std::endl;
 		while (Current->getID() != tail->getID())
 		{
 			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw4) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
 				<< std::setw(cw5) << Current->getStockOfArticle() << std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
 				<< std::setw(cw2) << Current->getWidth() << std::setw(cw2) << Current->getHeight() << std::setw(cw3) << Current->getSpeedIndex() << std::setw(cw3) << Current->getSeasson() << std::endl;
-			std::cout << "----------------------------------------------------------------------------------------" << std::endl;
+			std::cout << "--------------------------------------------------------------------------------------------------" << std::endl;
 			Current = Current->Next;
 		}
 		std::cout << "*Diam: Diameter    *SI: Speed Index    *Se: Seasson (0 winter, 1 summer)" << std::endl;  // legend for abreviations
