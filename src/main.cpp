@@ -165,10 +165,26 @@ int main(void)
 				{
 				case(1):
 				{
-					// function call
+					listOfTires.displayStock();
+					listOfRims.displayStock();
 					break;
 				}
 				case(2):
+				{
+					listOfTires.displayStock();
+					break;
+				}
+				case(3):
+				{
+					listOfRims.displayStock();
+					break;
+				}
+				case(4):
+				{
+					listOfTires.updateStock();
+					break;
+				}
+				case(5):
 				{
 					// function call
 					break;
@@ -361,8 +377,11 @@ unsigned stockMenu(void)
 	std::cout << "----------------------------------------------------------------" << std::endl;
 	std::cout << "-----------------------------STOCK MENU-------------------------" << std::endl;
 	std::cout << "----------------------------------------------------------------" << std::endl;
-	std::cout << "(1)\tDisplay Stock" << std::endl;
-	std::cout << "(2)\tUpdate Stock" << std::endl;
+	std::cout << "(1)\tDisplay Full Stock" << std::endl;
+	std::cout << "(2)\tDisplay Stock of Tires" << std::endl;
+	std::cout << "(3)\tDisplay Stock of Rims" << std::endl;
+	std::cout << "(4)\tUpdate Stock of Tires" << std::endl;
+	std::cout << "(5)\tUpdate Stock of Rims" << std::endl;
 	std::cout << "----------------------------------------------------------------" << std::endl;
 	std::cout << "(0)\tBack to Main Menu" << std::endl;
 	std::cout << "----------------------------------------------------------------" << std::endl;
@@ -374,11 +393,11 @@ unsigned stockMenu(void)
 		c = const_cast<char*>(wrong.c_str());  // we point to the std::string object
 		ua = (unsigned)c[0];				   // the decimal value of the ascii char will be assigned
 		ua = ua - 48;
-		if (wrong.length() != 1 || ua > 2)
+		if (wrong.length() != 1 || ua > 5)
 		{
 			std::cout << "Wrong option, please insert one of the above numbers: " << std::endl;
 		}
-	} while (wrong.length() != 1 || ua > 2);
+	} while (wrong.length() != 1 || ua > 5);
 	return ua;
 }
 

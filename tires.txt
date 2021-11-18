@@ -21,4 +21,4 @@ TorinoM
 ti7
 Bridgestone 315
 Bridgestone
-2 22.5 850 0 315 70 M 1
+21 22.5 850 0 315 70 M 1

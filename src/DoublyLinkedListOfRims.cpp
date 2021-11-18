@@ -184,6 +184,77 @@ void DoublyLinkedListOfRims::displayRims(void)
 	}
 }
 
+void DoublyLinkedListOfRims::displayStock(void)
+{
+	RimNode* Current = head->Next;							// We skip the dummyHead
+	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24, cw5 = 12;			// Column widths
+	if (Current->getID() == tail->getID())
+	{
+		std::cout << std::endl;
+		std::cout << "Nothing to print, the List of Tires is Empty!" << std::endl;
+	}
+	else
+	{
+		std::cout << std::endl;
+		std::cout << "------------------------------------------------------------------------------" << std::endl;
+		std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Name" << std::setw(cw1) << "Manufacturer" << std::setw(cw2) << "Diam"
+		 << std::setw(cw2) << "Price" << std::setw(cw2) << "Stock" << std::endl;
+		std::cout << "------------------------------------------------------------------------------" << std::endl;
+		while (Current->getID() != tail->getID())
+		{
+			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw4) << Current->getArticleName() << std::setw(cw1) << Current->getArticleManufacturer()
+				<<  std::setw(cw2) << Current->getDiameterOfArticle() << std::setw(cw2) << Current->getPriceOfArticle()
+				<< std::setw(cw2) << Current->getStockOfArticle() << std::endl;
+			std::cout << "------------------------------------------------------------------------------" << std::endl;
+			Current = Current->Next;
+		}
+		std::cout << "ID begins with \"ri\" for Rims\t\t*Diam = Diameter" << std::endl;  // legend for abreviations
+		std::cout << std::endl;
+	}
+}
+
+void DoublyLinkedListOfRims::updateStock(void)
+{
+	RimNode* Current = head->Next;							// We skip the dummyHead
+	std::string givenID;
+	unsigned newStock;
+
+	if (Current->getID() == tail->getID())
+	{
+		std::cout << std::endl;
+		std::cout << "Nothing to update, the List of Rims is Empty!" << std::endl;
+	}
+	else
+	{
+		std::cout << "Please insert the ID of the Rim article whose stock you would like to update: ";
+		std::cin >> givenID;
+
+		while(Current->getID() != tail->getID() && Current->getID() != givenID)
+		{
+			Current = Current->Next;
+		}
+		if (Current->getID() == tail->getID())
+		{
+			std::cout << "The given Rim ID is not present in the List of Rims" << std::endl;
+		}
+		else
+		{
+			std::cout << "Insert the new stock value for the Rim with ID \"" << givenID << "\": ";
+			std::cin >> newStock;	
+			while (std::cin.fail())
+			{
+				std::cout << "Error detected while giving the Stock. Please insert an integer: ";
+
+				std::cin.clear();				// clears the error flag
+				std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+				std::cin >> newStock;
+			}
+			Current->setStockOfArticle(newStock);
+			std::cout << "The stock was updated succesfully." << std::endl;
+		}
+	}
+}
+
 void DoublyLinkedListOfRims::filterRimsBySize(void)
 {
 	RimNode* Current = head->Next;		// We skip the dummyHead
