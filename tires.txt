@@ -6,10 +6,6 @@ ti2
 Turanza
 Bridgestone
 63 27.5 239 0 21 107 V 0
-ti3
-Audi A4
-Continental
-8 25 313 0 25.5 98.5 H 1
 ti4
 Euroall
 Falken
@@ -22,3 +18,7 @@ ti7
 Bridgestone 315
 Bridgestone
 21 22.5 850 0 315 70 M 1
+ti8
+Audi A4
+Continental
+8 25 313 0 25.5 98.5 H 1

@@ -26,6 +26,7 @@ void DoublyLinkedListOfRims::addRim(unsigned* lrn)
 
 	/* We populate the new Rim Node */
 	std::cout << "Please insert the attributes of the new Rim one by one: " << std::endl;
+	std::cout << std::endl;
 	std::cout << "Name: ";
 	std::cin.ignore();		// to clear the input buffer of previous statements ('\n' of previous statements)
 	getline(std::cin, name);
@@ -146,13 +147,21 @@ void DoublyLinkedListOfRims::deleteRim(void)
 		}
 		else
 		{
-			RimNode* BeforeNode = Current->Prev;
-			RimNode* AfterNode = Current->Next;
+			if (Current->getStockOfArticle() != 0)
+			{
+				std::cout << "The Article with ID \"" << Current->getID() << "\" cannot be deleted. The Stock value of the Article is not zero." << std::endl; 
+				std::cout << "Please empty the Stock of the Article with ID \"" << Current->getID() << "\" before deleting it." << std::endl; 
+			}
+			else
+			{
+				RimNode* BeforeNode = Current->Prev;
+				RimNode* AfterNode = Current->Next;
 
-			delete Current;
-			BeforeNode->Next = AfterNode;
-			AfterNode->Prev = BeforeNode;
-			std::cout << "The Article Rim with ID \"" << id << "\" was succesfully deleted." << std::endl;
+				delete Current;
+				BeforeNode->Next = AfterNode;
+				AfterNode->Prev = BeforeNode;
+				std::cout << "The Article Rim with ID \"" << id << "\" was succesfully deleted." << std::endl;
+			}
 		}
 	}
 }
