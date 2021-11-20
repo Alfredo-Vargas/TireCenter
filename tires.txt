@@ -9,7 +9,7 @@ Bridgestone
 ti4
 Euroall
 Falken
-4 22 331 0 21 114.5 Y 0
+8 22 331 0 21 114.5 Y 0
 ti5
 Fiat A4
 TorinoM

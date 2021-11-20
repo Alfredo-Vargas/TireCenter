@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Article.h"
 
-// So far no need of a constructor
-
 // Member functions:
 void Article::setArticleName(std::string newName)
 {
