@@ -18,3 +18,23 @@ Paardenmarkt 1 2000
 EndOfShoppingCartOfTires
 ri1 DESIGN8X18(x4) BORBET 1 22.5 258 1 28 0 black 
 EndOfShoppingCartOfRims
+in5
+2021 11 22 18 44 20
+ci1
+Steven
+Van Gucht
+Grote Markt 1 2000
+0
+ti2 Turanza Bridgestone 10 27.5 239 0 21 107 V 0
+EndOfShoppingCartOfTires
+EndOfShoppingCartOfRims
+in6
+2021 11 22 18 53 6
+ci2
+Marc
+Van Ranst
+Paardenmarkt 1 2000
+0
+ti2 Turanza Bridgestone 10 27.5 239 0 21 107 V 0
+EndOfShoppingCartOfTires
+EndOfShoppingCartOfRims

@@ -4,10 +4,6 @@
 #include <iostream>
 #include <fstream>	// to write and read data from or to a file
 #include <string>	// to read line by line from a file
-//#include "DoublyLinkedListOfTires.h"  // idea taken from tutorial: https://www.youtube.com/watch?v=fR6UIEQE930&t=322s&ab_channel=BradleySward
-//#include "DoublyLinkedListOfRims.h"
-//#include "DoublyLinkedListOfCustomers.h"
-//#include "DoublyLinkedListOfInvoices.h"
 #include "TireCenter.h"
 
 void linkDummyTireNodes(DoublyLinkedListOfTires*, TireNode*, TireNode*);

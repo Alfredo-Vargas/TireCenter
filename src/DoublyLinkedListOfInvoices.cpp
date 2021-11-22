@@ -15,8 +15,9 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 	RimNode* pointerToRim, *rimToBuy, *beforeRim, *rimHead, *rimTail;
 	CustomerNode* pointerToCustomer;
 	std::string customerID, tireID, rimID;
-	unsigned userAction, quantity, auxiliar;
-	float totalPrice = 0;
+	unsigned userAction, quantity, newStock, setCounterOfTires = 0, setCounterOfRims = 0;
+	float totalPrice = 0, discount;
+	bool getDiscount = false;
 
 	// We use two pointers one for tail and another to point to new Invoice
 	InvoiceNode* LastInvoice = tail->Prev, *ptn;
@@ -87,7 +88,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 			{
 			case(1):
 			{
-				listOfTires->displayTires();
+				listOfTires->displayStock();
 				std::cout << "Type the ID of the article you would like to add to the Shopping Cart and its quantity: ";
 				std::cin >> tireID >> quantity;
 				pointerToTire = listOfTires->head->Next;	// we skip the dummyHead
@@ -107,9 +108,11 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 					}
 					else
 					{
+						// The minimum quantity for a set is 2, therefore the number of sets of tires is given by:
+						setCounterOfTires += quantity / 2;
 						// We update the Stock when placing an order
-						auxiliar = pointerToTire->getStockOfArticle() - quantity;
-						pointerToTire->setStockOfArticle(auxiliar);
+						newStock = pointerToTire->getStockOfArticle() - quantity;
+						pointerToTire->setStockOfArticle(newStock);
 	
 						// We alocate new TireNode for each Tire the Customer wants to buy
 						tireToBuy = new TireNode();
@@ -128,7 +131,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 			}
 			case(2):
 			{
-				listOfRims->displayRims();
+				listOfRims->displayStock();
 				std::cout << "Type the ID of the article you would like to add to the Shopping Cart and its quantity: ";
 				std::cin >> rimID >> quantity;
 				pointerToRim = listOfRims->head->Next;	// we skip the dummyHead
@@ -146,11 +149,17 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 					{
 						std::cout << "The amount requested exceeds the stock, please specify a lower quantity" << std::endl;
 					}
+					else if (quantity % 4 != 0)
+					{
+						std::cout << "Rims are sold only in sets of 4 pieces. Please insert another quantity value" << std::endl;
+					}
 					else
 					{
+						// The minimum quantity for a set is 4, therefore the number of sets of rims is given by:
+						setCounterOfRims += quantity / 4;
 						// We update the Stock when placing an order
-						auxiliar = pointerToRim->getStockOfArticle() - quantity;
-						pointerToRim->setStockOfArticle(auxiliar);
+						newStock = pointerToRim->getStockOfArticle() - quantity;
+						pointerToRim->setStockOfArticle(newStock);
 
 						// We alocate new RimNode for each Rim the Customer wants to buy
 						rimToBuy = new RimNode();
@@ -171,7 +180,43 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 			}
 		} while (userAction != 0);
 
-		std::cout << "The total price of the order is: " << totalPrice << std::endl;
+		/*
+			DISCOUNT IMPLEMENTATION
+		*/
+		if (pointerToCustomer->getType() == 0 && setCounterOfTires > 1 )
+		{
+			getDiscount = true;
+			discount = setCounterOfRims > 1 ? 0.40 * totalPrice : 0.25 * totalPrice;
+		}
+		else if (pointerToCustomer->getType() == 1 && (setCounterOfTires + setCounterOfRims >= 10))
+		{
+			getDiscount = true;
+			discount = 0.25 * totalPrice;
+		}
+
+		if (!getDiscount)
+		{
+			if (pointerToCustomer->getType() == 0)
+			{
+				std::cout << "Discount for private customers: " << std::endl;
+				std::cout << "25% when purchasing a set of 4 tires." << std::endl;
+				std::cout << "40% when purchasing a set of 4 tires and a matching set of 4 rims." << std::endl;
+				std::cout << "The total price of the order is: " <<std::setprecision(2) << totalPrice << std::endl;
+			}
+			else
+			{
+				std::cout << "Discount for corporate customers: " << std::endl;
+				std::cout << "30% when purchasing 10 or more sets of Tires or Rims." << std::endl;
+				std::cout << "The total price of the order is: " <<std::setprecision(2) << totalPrice << std::endl;
+			}
+		}
+		else
+		{
+				std::cout << "The total price of the order is: " << totalPrice << " euro." << std::endl;
+				std::cout << "The Customer was eligible for a discount of " << std::setprecision(2) << discount << " euro." << std::endl;
+				totalPrice -= discount;
+				std::cout << "The total price to pay is: " << std::setprecision(2) << totalPrice << " euro." << std::endl;
+		}
 	}
 }
 
@@ -183,6 +228,9 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 	std::string fullname, fulldate, customerType;
 	unsigned cw1 = 16, cw2 = 10, cw3 = 6, cw4 = 24;				// Column width1, widht2, width3, width4
 	float subtotal, totalPrice, discount;
+	unsigned setCounterOfTires = 0, setCounterOfRims = 0;
+	bool getDiscount;
+
 	if (Current->getID() == tail->getID())
 	{
 		std::cout << "Nothing to print, the List of Invoices is Empty!" << std::endl;
@@ -223,6 +271,7 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 					 << std::setw(cw1) << std::setprecision (2) << std::fixed << subtotal << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 				totalPrice = totalPrice + subtotal;
+				setCounterOfTires += tempTire->getStockOfArticle() / 2;
 				tempTire = tempTire->Next;
 			}
 			tempRim = Current->cartOfRims.head->Next;
@@ -233,10 +282,30 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 					 << std::setw(cw1) << std::setprecision (2) << std::fixed << subtotal << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 				totalPrice = totalPrice + subtotal;
+				setCounterOfRims += tempRim->getStockOfArticle() / 4;
 				tempRim = tempRim->Next;
 			}
 			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
-			std::cout << "The total price of invoice \"" << Current->getID() << "\" is : " << std::setprecision(2) << std::fixed << totalPrice << std::endl;
+
+			if (customerType == "private" && setCounterOfTires > 1 )
+			{
+				getDiscount = true;
+				discount = setCounterOfRims > 1 ? 0.40 * totalPrice : 0.25 * totalPrice;
+			}
+			else if (customerType == "corporate" && (setCounterOfTires + setCounterOfRims >= 10))
+			{
+				getDiscount = true;
+				discount = 0.25 * totalPrice;
+			}
+			if (!getDiscount)
+			{
+				std::cout << "The total price of the order \"" << Current->getID() << "\" is : " << std::setprecision(2) << totalPrice << " euro. The Customer was not eligible for a discount." << std::endl;
+			}
+			else
+			{
+				std::cout << "The total price of the order \"" << Current->getID() << "\" is : " << std::setprecision(2) << totalPrice << ". The Customer was eligible for a discount of " << discount  << " euro. " << std::endl;
+				totalPrice -= discount;
+				std::cout << "The total price to pay is: " << std::setprecision(2) << totalPrice << " euro." << std::endl;			}
 			std::cout << std::endl;
 			Current = Current->Next;
 			subtotal = 0;

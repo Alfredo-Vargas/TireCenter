@@ -14,4 +14,3 @@ public:
 	InvoiceNode* head;
 	InvoiceNode* tail;
 };
-

@@ -5,7 +5,7 @@ Michelin
 ti2
 Turanza
 Bridgestone
-63 27.5 239 0 21 107 V 0
+43 27.5 239 0 21 107 V 0
 ti4
 Euroall
 Falken
