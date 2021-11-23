@@ -8,7 +8,7 @@ Grote Markt 1 2000
 ti1 BMW641M(x4) Michelin 3 255 2395 0 28 115 W 1
 EndOfShoppingCartOfTires
 EndOfShoppingCartOfRims
-in4
+in2
 2021 11 8 17 43 53
 ci2
 Marc
@@ -16,9 +16,9 @@ Van Ranst
 Paardenmarkt 1 2000
 0
 EndOfShoppingCartOfTires
-ri1 DESIGN8X18(x4) BORBET 1 22.5 258 1 28 0 black 
+ri1 DESIGN8X18(x4) BORBET 1 22.5 258 1 28 0 black
 EndOfShoppingCartOfRims
-in5
+in3
 2021 11 22 18 44 20
 ci1
 Steven
@@ -28,24 +28,46 @@ Grote Markt 1 2000
 ti2 Turanza Bridgestone 10 27.5 239 0 21 107 V 0
 EndOfShoppingCartOfTires
 EndOfShoppingCartOfRims
-in6
-2021 11 22 18 53 6
-ci2
-Marc
-Van Ranst
-Paardenmarkt 1 2000
-0
-ti2 Turanza Bridgestone 10 27.5 239 0 21 107 V 0
-EndOfShoppingCartOfTires
-EndOfShoppingCartOfRims
-in7
-2021 11 23 21 39 55
+in4
+2021 11 22 18 44 20
 ci5
 Lieven
 Scheire
 Sint-Veerleplein 11 9000
 0
-ti7 Bridgestone 315 Bridgestone 2 22.5 850 0 315 70 M 1
+ti2 Turanza Bridgestone 20 27.5 239 0 21 107 V 0
 EndOfShoppingCartOfTires
-ri1 DESIGN 8X18 BORBET 16 22.5 158 1 28 0 black 
+EndOfShoppingCartOfRims
+in9
+2021 11 23 25 34 5
+ci4
+Nokia
+nokia@nokia.com
+Copernicuslaan 50 2000
+1
+EndOfShoppingCartOfTires
+ri3 ALEX ALCOA 4 21.5 810 1 24 1 grey
+EndOfShoppingCartOfRims
+in10
+2021 11 23 25 38 7
+ci5
+Lieven
+Scheire
+Sint-Veerleplein 11 9000
+0
+EndOfShoppingCartOfTires
+ri3 ALEX ALCOA 8 21.5 810 1 24 1 grey
+EndOfShoppingCartOfRims
+in12
+2021 11 23 26 51 22
+ci5
+Lieven
+Scheire
+Sint-Veerleplein 11 9000
+0
+ti1 BMW 641M Michelin 4 25.5 695 0 28 115 W 1
+ti2 Turanza Bridgestone 4 27.5 239 0 21 107 V 0
+EndOfShoppingCartOfTires
+ri4 WHEELWORLD UNIWHEELS 4 24.5 460 1 26 1 grey
+ri3 ALEX ALCOA 4 21.5 810 1 24 1 grey
 EndOfShoppingCartOfRims

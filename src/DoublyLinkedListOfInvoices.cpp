@@ -23,7 +23,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 	// We use two pointers one for tail and another to point to new Invoice
 	InvoiceNode* LastInvoice = tail->Prev, *ptn;
 
-	std::cout << "we need the Customer ID to proceed. Would you like to see the list of Customers? (y/n): ";
+	std::cout << "We need the Customer ID to proceed. Would you like to see the list of Customers? (y/n): ";
 	std::cin >> userAction;
 	while (std::cin.fail() || (userAction != 'y' && userAction != 'n'))
 	{
@@ -44,15 +44,9 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 	{
 		listOfCustomers->displayCustomers();
 	}
-	std::cout << "Please enter the Customer ID: ";
-	std::cin >> customerID;
-	while (std::cin.fail())
-	{
-		std::cout << "Error detected. Please insert a valid input. Example: \"ci4\". Insert the Customer ID: ";
-		std::cin.clear();				// clears the error flag
-		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
-		std::cin >> customerID;		
-	}
+	std::cout << "Please enter the Customer ID: " << std::endl;
+	std::cin.ignore();
+	getline(std::cin, customerID);
 
 	// We start the traversal walk from the beginning of the list of Customers skipping the dummyHead
 	pointerToCustomer = listOfCustomers->head->Next;	
@@ -257,9 +251,9 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 		else
 		{
 				std::cout << "The total price of the order is: " << totalPrice << " euro." << std::endl;
-				std::cout << "The Customer was eligible for a discount of " << std::setprecision(2) << discount << " euro." << std::endl;
+				std::cout << "The Customer was eligible for a discount of " << std::fixed << std::setprecision(2) << discount << " euro." << std::endl;
 				totalPrice -= discount;
-				std::cout << "The total price to pay is: " << std::setprecision(2) << totalPrice << " euro." << std::endl;
+				std::cout << "The total price to pay is: " << std::fixed << std::setprecision(2) << totalPrice << " euro." << std::endl;
 		}
 	}
 }
@@ -301,9 +295,9 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			std::cout << std::setw(cw3) << "ID" << std::setw(cw4) << "Customer Full Name" << std::setw(cw4) << "Date of the Order" << std::setw(cw4) << "Delivery Address" << std::setw(cw4) << "Customer Type" << std::endl;
 			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
-			std::cout << std::setw(cw3) << "LIST OF ARTICLES ORDERED: " << std::endl;
-			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			std::cout << std::setw(cw3) << Current->getID() << std::setw(cw4) << fullname << std::setw(cw4) << fulldate << std::setw(cw4) << Current->getCustomer().getAddress() << std::setw(cw4) << customerType << std::endl;
+			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
+			std::cout << std::setw(cw4) <<  " " << std::setw(cw1) << "" << std::setw(cw3) << "<<<LIST OF ARTICLES ORDERED>>>" << std::endl;
 			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			std::cout << std::setw(cw1) << "Name" << std::setw(cw3) << "ID" << std::setw(cw1)  << "Quantity" << std::setw(cw1) << "Unitary Price" << std::setw(cw1) << "Subtotal" << std::endl;
 			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
@@ -343,18 +337,18 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 			if (!getDiscount)
 			{
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
-				std::cout << std::setw(cw1) << "TOTAL:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
+				std::cout << std::setw(cw1) << "TOTAL:" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			}
 			else
 			{
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
-				std::cout << std::setw(cw1) << "TOTAL AMOUNT:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
+				std::cout << std::setw(cw1) << "TOTAL AMOUNT:" << std::setw(cw3) << " " << std::setw(cw1) << " " << std::setw(cw1) << " " << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
-				std::cout << std::setw(cw1) << "DISCOUNT:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << discount << std::endl;
+				std::cout << std::setw(cw1) << "DISCOUNT:" << std::setw(cw3) << " " << std::setw(cw1) << " " << std::setw(cw1) << " " << std::setw(cw1) << std::setprecision(2) << discount << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 				totalPrice -= discount;
-				std::cout << std::setw(cw1) << "TOTAL TO PAY:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
+				std::cout << std::setw(cw1) << "TOTAL TO PAY:" << std::setw(cw3) << " " << std::setw(cw1) << " " << std::setw(cw1) << " " << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			std::cout << std::endl;
 			Current = Current->Next;
@@ -438,7 +432,6 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 			tempInvoice->cartOfRims.head = rimHead;
 			tempInvoice->cartOfRims.tail = rimTail;
 
-
 			fromInvoicesFile >> articleID;
 			while (articleID != "EndOfShoppingCartOfTires")
 			{
@@ -463,8 +456,10 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 				tempTire->Prev = beforeTire;
 				tireTail->Prev = tempTire;
 
+				getline(fromInvoicesFile, trash);
 				fromInvoicesFile >> articleID;
 			}
+			getline(fromInvoicesFile, trash);	// to get the null byte at the end of "EndOfShoppingCartOfTires"
 			fromInvoicesFile >> articleID;
 			while (articleID != "EndOfShoppingCartOfRims")
 			{

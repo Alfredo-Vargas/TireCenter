@@ -1,11 +1,11 @@
 ti1
 BMW 641M
 Michelin
-36 25.5 695 0 28 115 W 1
+32 25.5 695 0 28 115 W 1
 ti2
 Turanza
 Bridgestone
-43 27.5 239 0 21 107 V 0
+39 27.5 239 0 21 107 V 0
 ti4
 Euroall
 Falken
@@ -17,7 +17,7 @@ TorinoM
 ti7
 Bridgestone 315
 Bridgestone
-208 22.5 850 0 315 70 M 1
+176 22.5 850 0 315 70 M 1
 ti8
 Audi A4
 Continental
