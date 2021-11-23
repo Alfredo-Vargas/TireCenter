@@ -9,16 +9,16 @@ Bridgestone
 ti4
 Euroall
 Falken
-8 22 331 0 21 114.5 Y 0
+98 22 331 0 21 114.5 Y 0
 ti5
 Fiat A4
 TorinoM
-16 24.5 466 0 29 100 V 1
+111 24.5 466 0 29 100 V 1
 ti7
 Bridgestone 315
 Bridgestone
-21 22.5 850 0 315 70 M 1
+208 22.5 850 0 315 70 M 1
 ti8
 Audi A4
 Continental
-8 25 313 0 25.5 98.5 H 1
+71 25 313 0 25.5 98.5 H 1

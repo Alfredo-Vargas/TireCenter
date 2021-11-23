@@ -14,16 +14,45 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 	TireNode* pointerToTire, *tireToBuy, *beforeTire, *tireHead, *tireTail;
 	RimNode* pointerToRim, *rimToBuy, *beforeRim, *rimHead, *rimTail;
 	CustomerNode* pointerToCustomer;
-	std::string customerID, tireID, rimID;
-	unsigned userAction, quantity, newStock, setCounterOfTires = 0, setCounterOfRims = 0;
+	std::string customerID, tireID, rimID, trash;
+	unsigned quantity, newStock, setCounterOfTires = 0, setCounterOfRims = 0;
 	float totalPrice = 0, discount;
 	bool getDiscount = false;
+	char userAction;
 
 	// We use two pointers one for tail and another to point to new Invoice
 	InvoiceNode* LastInvoice = tail->Prev, *ptn;
 
-	std::cout << "Please insert the ID of the Customer who wants to Place an Order: ";
+	std::cout << "we need the Customer ID to proceed. Would you like to see the list of Customers? (y/n): ";
+	std::cin >> userAction;
+	while (std::cin.fail() || (userAction != 'y' && userAction != 'n'))
+	{
+		if (std::cin.fail())
+		{
+			std::cout << "Error detected. Please insert only the letters \"y\" for yes or \"n\" for no: ";
+			std::cin.clear();				// clears the error flag
+			std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+			std::cin >> userAction;
+		}
+		else
+		{
+			std::cout << "Please insert one of the two options. The letter \"y\" for yes or \"n\" for no: ";
+			std::cin >> userAction;
+		}
+	}
+	if (userAction == 'y')
+	{
+		listOfCustomers->displayCustomers();
+	}
+	std::cout << "Please enter the Customer ID: ";
 	std::cin >> customerID;
+	while (std::cin.fail())
+	{
+		std::cout << "Error detected. Please insert a valid input. Example: \"ci4\". Insert the Customer ID: ";
+		std::cin.clear();				// clears the error flag
+		std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+		std::cin >> customerID;		
+	}
 
 	// We start the traversal walk from the beginning of the list of Customers skipping the dummyHead
 	pointerToCustomer = listOfCustomers->head->Next;	
@@ -36,7 +65,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 
 	if (pointerToCustomer->getID() == listOfCustomers->tail->getID())
 	{
-		std::cout << "The given ID of the Customer has not been found. Please add the Customer to the register before placing an order" << std::endl;
+		std::cout << "The given ID of the Customer has not been found. Please add the Customer to the register before placing an order." << std::endl;
 	}
 	else
 	{
@@ -82,11 +111,26 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 
 		do
 		{
-			std::cout << "Type \"0\" to close the order. Whould you like to see the List of Tires(\"1\") or List of Rims(\"2\")?: ";
+			std::cout << "Type \"1\" to add a Tire or \"2\" to add a Rim. Type \"0\" to close the Order: ";
 			std::cin >> userAction;
+			while (std::cin.fail() || (userAction != '0' && userAction != '1' && userAction !='2'))
+			{
+				if (std::cin.fail())
+				{
+					std::cout << "Error detected. Please insert only the numbers \"1\", \"2\" or \"0\": ";
+					std::cin.clear();				// clears the error flag
+					std::cin.ignore(1000, '\n');	// ignore the next 1000 chars (including the cause of the error of the input)
+					std::cin >> userAction;
+				}
+				else
+				{
+					std::cout << "Invalid option. Please insert \"1\" to add a Tire , \"2\" to add a Rim or \"0\" to close the Order: ";
+					std::cin >> userAction;
+				}
+			}
 			switch (userAction)
 			{
-			case(1):
+			case('1'):
 			{
 				listOfTires->displayStock();
 				std::cout << "Type the ID of the article you would like to add to the Shopping Cart and its quantity: ";
@@ -129,7 +173,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 				}
 				break;
 			}
-			case(2):
+			case('2'):
 			{
 				listOfRims->displayStock();
 				std::cout << "Type the ID of the article you would like to add to the Shopping Cart and its quantity: ";
@@ -178,7 +222,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 				break;
 			}
 			}
-		} while (userAction != 0);
+		} while (userAction != '0');
 
 		/*
 			DISCOUNT IMPLEMENTATION
@@ -201,13 +245,13 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 				std::cout << "Discount for private customers: " << std::endl;
 				std::cout << "25% when purchasing a set of 4 tires." << std::endl;
 				std::cout << "40% when purchasing a set of 4 tires and a matching set of 4 rims." << std::endl;
-				std::cout << "The total price of the order is: " <<std::setprecision(2) << totalPrice << std::endl;
+				std::cout << "The total price of the order is: " << std::setprecision(2) << totalPrice << std::endl;
 			}
 			else
 			{
 				std::cout << "Discount for corporate customers: " << std::endl;
 				std::cout << "30% when purchasing 10 or more sets of Tires or Rims." << std::endl;
-				std::cout << "The total price of the order is: " <<std::setprecision(2) << totalPrice << std::endl;
+				std::cout << "The total price of the order is: " << std::setprecision(2) << totalPrice << std::endl;
 			}
 		}
 		else
@@ -285,12 +329,11 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 				setCounterOfRims += tempRim->getStockOfArticle() / 4;
 				tempRim = tempRim->Next;
 			}
-			std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 
 			if (customerType == "private" && setCounterOfTires > 1 )
 			{
 				getDiscount = true;
-				discount = setCounterOfRims > 1 ? 0.40 * totalPrice : 0.25 * totalPrice;
+				discount = setCounterOfRims > 1 ? 0.25 * totalPrice : 0;
 			}
 			else if (customerType == "corporate" && (setCounterOfTires + setCounterOfRims >= 10))
 			{
@@ -299,18 +342,26 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 			}
 			if (!getDiscount)
 			{
-				std::cout << "The total price of the order \"" << Current->getID() << "\" is : " << std::setprecision(2) << totalPrice << " euro. The Customer was not eligible for a discount." << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
+				std::cout << std::setw(cw1) << "TOTAL:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			}
 			else
 			{
-				std::cout << "The total price of the order \"" << Current->getID() << "\" is : " << std::setprecision(2) << totalPrice << ". The Customer was eligible for a discount of " << discount  << " euro. " << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
+				std::cout << std::setw(cw1) << "TOTAL AMOUNT:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
+				std::cout << std::setw(cw1) << "DISCOUNT:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << discount << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 				totalPrice -= discount;
-				std::cout << "The total price to pay is: " << std::setprecision(2) << totalPrice << " euro." << std::endl;			}
+				std::cout << std::setw(cw1) << "TOTAL TO PAY:\"" << std::setw(cw3) << std::setw(cw1) << std::setw(cw1) << std::setw(cw1) << std::setprecision(2) << totalPrice << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------" << std::endl;
 			std::cout << std::endl;
 			Current = Current->Next;
 			subtotal = 0;
 			totalPrice = 0;
 			discount = 0;
+			}
 		}
 	}
 }
@@ -356,7 +407,6 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 			date.setSecond(second);
 			tempInvoice->copyID(invoiceID);
 			tempInvoice->copyDate(date);
-
 			currentCustomer.copyID(customerID);
 			currentCustomer.setFirstName(firstname);
 			currentCustomer.setLastName(lastname);

@@ -38,3 +38,14 @@ Paardenmarkt 1 2000
 ti2 Turanza Bridgestone 10 27.5 239 0 21 107 V 0
 EndOfShoppingCartOfTires
 EndOfShoppingCartOfRims
+in7
+2021 11 23 21 39 55
+ci5
+Lieven
+Scheire
+Sint-Veerleplein 11 9000
+0
+ti7 Bridgestone 315 Bridgestone 2 22.5 850 0 315 70 M 1
+EndOfShoppingCartOfTires
+ri1 DESIGN 8X18 BORBET 16 22.5 158 1 28 0 black 
+EndOfShoppingCartOfRims
