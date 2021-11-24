@@ -432,10 +432,15 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 			tempInvoice->cartOfRims.head = rimHead;
 			tempInvoice->cartOfRims.tail = rimTail;
 
-			fromInvoicesFile >> articleID;
+			getline(fromInvoicesFile, trash);
+			getline(fromInvoicesFile, articleID);
 			while (articleID != "EndOfShoppingCartOfTires")
 			{
-				fromInvoicesFile >> name >> manufacturer >> stock >> diameter >> price >> articleType >> width >> height >> speedIndex >> seasson;
+				/* Load all Tire data into variables */
+				getline(fromInvoicesFile, name);
+				getline(fromInvoicesFile, manufacturer);
+				fromInvoicesFile >> stock >> diameter >> price >> articleType >> width >> height >> speedIndex >> seasson;
+				/* Copy all data from the Tire article to a TireNode */
 				tempTire = new TireNode();
 				tempTire->copyID(articleID);
 				tempTire->setArticleName(name);
@@ -448,6 +453,7 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 				tempTire->setHeight(height);
 				tempTire->setSpeedIndex(speedIndex);
 				tempTire->setSeasson(seasson);
+
 				/* We are inserting always at the tail */
 				beforeTire = tireTail->Prev;		// we use the previous of the tail
 				// we adjust four links
@@ -456,23 +462,20 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 				tempTire->Prev = beforeTire;
 				tireTail->Prev = tempTire;
 
-				getline(fromInvoicesFile, trash);
-				fromInvoicesFile >> articleID;
+				getline(fromInvoicesFile, trash);	// The previoys fromInvoicesFile >> seasson (which do not take the new line char)
+				getline(fromInvoicesFile, articleID);
 			}
-			getline(fromInvoicesFile, trash);	// to get the null byte at the end of "EndOfShoppingCartOfTires"
-			fromInvoicesFile >> articleID;
+			getline(fromInvoicesFile, articleID);
 			while (articleID != "EndOfShoppingCartOfRims")
-			{
-				fromInvoicesFile >> name;
-				fromInvoicesFile >> manufacturer;
-				fromInvoicesFile >> stock;
-				fromInvoicesFile >> diameter;
-				fromInvoicesFile >> price;
-				fromInvoicesFile >> articleType;
-				fromInvoicesFile >> width;
-				fromInvoicesFile >> material;
-				fromInvoicesFile >> color;
+			{	
+				/* Load all Rim data into variables */
+				getline(fromInvoicesFile, name);
+				getline(fromInvoicesFile, manufacturer);
+				fromInvoicesFile >> stock >> diameter >> price >> articleType >> width >> material;
+				getline(fromInvoicesFile, trash);
+				getline(fromInvoicesFile, color);
 
+				/* Copy all data from the Rim article to a RimNode */
 				tempRim = new RimNode();
 				tempRim->copyID(articleID);
 				tempRim->setArticleName(name);
@@ -493,7 +496,8 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 				tempRim->Prev = beforeRim;
 				tempInvoice->cartOfRims.tail->Prev = tempRim;
 
-				fromInvoicesFile >> articleID;
+				// the reading was getline(fromInvoicesFile, color) which takes also the new line char
+				getline(fromInvoicesFile, articleID);
 			}
 
 			beforeTemp = tail->Prev;
@@ -504,7 +508,6 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 			tempInvoice->Prev = beforeTemp;
 			tail->Prev = tempInvoice;
 
-			getline(fromInvoicesFile, trash);
 			getline(fromInvoicesFile, invoiceID);				// last line is an empty line in the file
 		}
 
@@ -549,8 +552,10 @@ void DoublyLinkedListOfInvoices::saveToFile(void)
 			{
 				while (tempTire->getID() != tempInvoice->cartOfTires.tail->getID())
 				{
-					toInvoicesFile << tempTire->getID() << " " << tempTire->getArticleName() << " " << tempTire->getArticleManufacturer()
-						<< " " << tempTire->getStockOfArticle() << " " << tempTire->getDiameterOfArticle() << " " << tempTire->getPriceOfArticle() << " "
+					toInvoicesFile << tempTire->getID() << std::endl;
+					toInvoicesFile << tempTire->getArticleName() << std::endl;
+					toInvoicesFile << tempTire->getArticleManufacturer() << std::endl;
+					toInvoicesFile << tempTire->getStockOfArticle() << " " << tempTire->getDiameterOfArticle() << " " << tempTire->getPriceOfArticle() << " "
 						<< tempTire->getTypeOfArticle() << " " << tempTire->getWidth() << " " << tempTire->getHeight() << " " << tempTire->getSpeedIndex() << " "
 						<< tempTire->getSeasson() << std::endl;
 					tempTire = tempTire->Next;
@@ -568,9 +573,12 @@ void DoublyLinkedListOfInvoices::saveToFile(void)
 			{
 				while (tempRim->getID() != tempInvoice->cartOfRims.tail->getID())
 				{
-					toInvoicesFile << tempRim->getID() << " " << tempRim->getArticleName() << " " << tempRim->getArticleManufacturer()
-						<< " " << tempRim->getStockOfArticle() << " " << tempRim->getDiameterOfArticle() << " " << tempRim->getPriceOfArticle() << " "
-						<< tempRim->getTypeOfArticle() << " " << tempRim->getWidth() << " " << tempRim->getMaterial() << " " << tempRim->getColor() << " " << std::endl;
+					toInvoicesFile << tempRim->getID() << std::endl;
+					toInvoicesFile << tempRim->getArticleName() << std::endl;
+					toInvoicesFile << tempRim->getArticleManufacturer() << std::endl;
+					toInvoicesFile << tempRim->getStockOfArticle() << " " << tempRim->getDiameterOfArticle() << " " << tempRim->getPriceOfArticle() << " "
+						<< tempRim->getTypeOfArticle() << " " << tempRim->getWidth() << " " << tempRim->getMaterial() << std::endl;
+					toInvoicesFile << tempRim->getColor() << std::endl;
 					tempRim = tempRim->Next;
 				}
 				toInvoicesFile << "EndOfShoppingCartOfRims" << std::endl;
