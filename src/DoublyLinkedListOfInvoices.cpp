@@ -496,7 +496,7 @@ void DoublyLinkedListOfInvoices::loadFromFile(void)
 				tempRim->Prev = beforeRim;
 				tempInvoice->cartOfRims.tail->Prev = tempRim;
 
-				// the reading was getline(fromInvoicesFile, color) which takes also the new line char
+				// the previous reading was getline(fromInvoicesFile, color) which takes also the new line char
 				getline(fromInvoicesFile, articleID);
 			}
 

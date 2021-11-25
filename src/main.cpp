@@ -42,19 +42,15 @@ int main(void)
 
 	/* We populate the dummy variables of the List of Tires */
 	linkDummyTireNodes(&myTireCenter.listOfTires, &dummyTireHead, &dummyTireTail);
-	//linkDummyTireNodes(&listOfTires, &dummyTireHead, &dummyTireTail);
 
 	/* We populate the dummy variables of the List of Rims */
 	linkDummyRimNodes(&myTireCenter.listOfRims, &dummyRimHead, &dummyRimTail);
-	//linkDummyRimNodes(&listOfRims, &dummyRimHead, &dummyRimTail);
 
 	/* We populate the dummy variables of the List of Customers */
 	linkDummyCustomerNodes(&myTireCenter.listOfCustomers, &dummyCustomerHead, &dummyCustomerTail);
-	//linkDummyCustomerNodes(&listOfCustomers, &dummyCustomerHead, &dummyCustomerTail);
 
 	/* We populate the dummy variables of the List of Invoices */
 	linkDummyInvoiceNodes(&myTireCenter.listOfInvoices, &dummyInvoiceHead, &dummyInvoiceTail);
-	//linkDummyInvoiceNodes(&listOfInvoices, &dummyInvoiceHead, &dummyInvoiceTail);
 
 	// If the database is empty we start from zero, otherwise the numbers below are initialized from a file
 	loadIndexFile(&lastTireNumber, &lastRimNumber, &lastCustomerNumber, &lastInvoiceNumber);

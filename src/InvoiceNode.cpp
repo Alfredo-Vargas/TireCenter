@@ -20,7 +20,7 @@ void InvoiceNode::setDate(void)		// this function requires the ctime header
 	// idea taken from: https://www.tutorialspoint.com/cplusplus/cpp_date_time.htm
 	// localtime was deprecated, he we used localtime_s instead
 
-	/* DATE IMPLEMENTATION FOR WINDOWS (uses localtime_s)
+	// DATE IMPLEMENTATION FOR WINDOWS (uses localtime_s)
 	time_t now = time(0);  // returns current time in seconds
 	struct tm ltm;
 	localtime_s(&ltm, &now);
@@ -31,13 +31,12 @@ void InvoiceNode::setDate(void)		// this function requires the ctime header
 	date.setHour(5 + ltm.tm_hour);
 	date.setMinute(30 + ltm.tm_min);
 	date.setSecond(ltm.tm_sec);
-	*/
 
 
 	// DATE IMPLEMENTATION FOR LINUX (uses localtime_r)
+	/*
 	time_t now = time(0);	// return current time in seconds
 	struct tm ltm;
-
 	localtime_r(&now, &ltm);
 	date.setYear(1900 + ltm.tm_year);
 	date.setMonth(1 + ltm.tm_mon);
@@ -45,6 +44,7 @@ void InvoiceNode::setDate(void)		// this function requires the ctime header
 	date.setHour(5 + ltm.tm_hour);
 	date.setMinute(30 + ltm.tm_min);
 	date.setSecond(ltm.tm_sec);
+	*/
 }
 
 void InvoiceNode::copyDate(Date newDate)

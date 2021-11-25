@@ -323,7 +323,8 @@ void DoublyLinkedListOfRims::loadFromFile(void)
 			fromRimsFile >> type;
 			fromRimsFile >> width;
 			fromRimsFile >> material;
-			fromRimsFile >> color;
+			getline(fromRimsFile, trash);
+			getline(fromRimsFile, color);
 
 			tempRim = new RimNode();
 			tempRim->copyID(id);
@@ -344,7 +345,7 @@ void DoublyLinkedListOfRims::loadFromFile(void)
 			tempRim->Prev = beforeTemp;
 			tail->Prev = tempRim;
 
-			getline(fromRimsFile, trash);	// to ignore the last '\n'
+			// the previous reading was getline(fromInvoicesFile, color) which takes also the new line char
 			getline(fromRimsFile, id);
 		}
 		fromRimsFile.close();
@@ -368,7 +369,7 @@ void DoublyLinkedListOfRims::saveToFile(void)
 		{
 			toRimsFile << tempRim->getID() << std::endl << tempRim->getArticleName() << std::endl << tempRim->getArticleManufacturer() << std::endl
 				<< tempRim->getStockOfArticle() << " " << tempRim->getDiameterOfArticle() << " " << tempRim->getPriceOfArticle() << " "
-				<< tempRim->getTypeOfArticle() << " " << tempRim->getWidth() << " " << tempRim->getMaterial() << " " << tempRim->getColor() << " " << std::endl;
+				<< tempRim->getTypeOfArticle() << " " << tempRim->getWidth() << " " << tempRim->getMaterial() << std::endl << tempRim->getColor() << std::endl;
 			tempRim = tempRim->Next;
 		}
 		toRimsFile.close();
