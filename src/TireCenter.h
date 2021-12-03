@@ -2,6 +2,7 @@
 #include <iostream>
 #include "DoublyLinkedListOfTires.h"
 #include "DoublyLinkedListOfRims.h"
+#include "DoublyLinkedListOfArticles.h"
 #include "DoublyLinkedListOfCustomers.h"
 #include "DoublyLinkedListOfInvoices.h"
 
@@ -25,6 +26,7 @@ public:
 	unsigned articleMenu(unsigned);
 	unsigned stockMenu(void);
 
+    DoublyLinkedListOfArticles listOfArticles;
 	DoublyLinkedListOfTires listOfTires;
 	DoublyLinkedListOfRims listOfRims;
 	DoublyLinkedListOfCustomers listOfCustomers;

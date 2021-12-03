@@ -3,9 +3,6 @@
 #include <iomanip>		// to use the function setw (set width)
 #include "DoublyLinkedListOfTires.h"
 
-// head, tail and dummyHead and dummyTail are initialized with the following ID:
-// 9998 and 9999 values for width are set to bare in mind that every insertion will be ordered
-
 DoublyLinkedListOfTires::~DoublyLinkedListOfTires()
 {
 

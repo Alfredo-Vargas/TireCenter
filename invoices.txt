@@ -60,3 +60,16 @@ ENKEI
 4 27 320.5 1 34 1
 black
 EndOfShoppingCartOfRims
+in14
+2021 12 3 23 40 13
+ci4
+Nokia
+nokia@nokia.com
+Copernicuslaan 50 2000
+1
+ti4
+Euroall
+Falken
+6 22 331 0 21 114.5 Y 0
+EndOfShoppingCartOfTires
+EndOfShoppingCartOfRims
