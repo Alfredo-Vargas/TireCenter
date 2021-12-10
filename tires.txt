@@ -17,7 +17,7 @@ TorinoM
 ti7
 Bridgestone 315
 Bridgestone
-168 22.5 850 0 315 70 M 1
+148 22.5 850 0 315 70 M 1
 ti8
 Audi A4
 Continental
