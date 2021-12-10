@@ -1,6 +1,10 @@
 # TireCenter
 This code is part of the assignment of the Course: Objected Oriented Programming part of the career Electronics ICT/AI from the Institute Thomas More (Belgium)
 #
+
+## Previeww of the program:
+![welcomeScreen.png](./welcomeScreen.png)
+
 ## NOTE:
 For training purposes we implemented from scratch a Double Linked List.
 Real implementations of this program should use the built-in list data type in C++ or even better just a vector:
