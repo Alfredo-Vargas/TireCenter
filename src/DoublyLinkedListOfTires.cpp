@@ -174,7 +174,7 @@ void DoublyLinkedListOfTires::deleteTire(void)
 void DoublyLinkedListOfTires::displayTires(void)
 {
 	TireNode* Current = head->Next;							// We skip the dummyHead
-	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24, cw5 = 12;			// Column widths
+	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24;			// Column widths
 	if (Current->getID() == tail->getID())
 	{
 		std::cout << std::endl;
@@ -202,7 +202,7 @@ void DoublyLinkedListOfTires::displayTires(void)
 void DoublyLinkedListOfTires::displayStock(void)
 {
 	TireNode* Current = head->Next;							// We skip the dummyHead
-	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24, cw5 = 12;			// Column widths
+	unsigned cw1 = 16, cw2 = 8, cw3 = 4, cw4 = 24;			// Column widths
 	if (Current->getID() == tail->getID())
 	{
 		std::cout << std::endl;

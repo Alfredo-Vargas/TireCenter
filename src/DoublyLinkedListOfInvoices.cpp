@@ -263,7 +263,7 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 	TireNode* tempTire;
 	RimNode* tempRim;
 	std::string fullname, fulldate, customerType;
-	unsigned cw1 = 16, cw2 = 10, cw3 = 6, cw4 = 24;				// Column width1, widht2, width3, width4
+	unsigned cw1 = 16, cw3 = 6, cw4 = 24;				// Column width1, widht2, width3, width4
 	float subtotal, totalPrice, discount, percentageDiscount = 0.25;	// 25% discount!! Quite generous
 	unsigned setCounterOfTires = 0, setCounterOfRims = 0;
 	bool getDiscount = true;
