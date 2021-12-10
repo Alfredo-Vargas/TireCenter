@@ -3,11 +3,6 @@
 #include <iomanip>		// for simplifying printing out 
 #include "DoublyLinkedListOfCustomers.h"
 
-DoublyLinkedListOfCustomers::~DoublyLinkedListOfCustomers()
-{
-
-}
-
 void DoublyLinkedListOfCustomers::addCustomer(unsigned* lcn)
 {
 	std::string id, firstname, lastname, address;

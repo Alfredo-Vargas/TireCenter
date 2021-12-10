@@ -3,11 +3,6 @@
 #include <iomanip>		// to use the function setw (set width)
 #include "DoublyLinkedListOfTires.h"
 
-DoublyLinkedListOfTires::~DoublyLinkedListOfTires()
-{
-
-}
-
 void DoublyLinkedListOfTires::addTire(unsigned* ltn)
 {
 	std::string name, manufacturer, temp;

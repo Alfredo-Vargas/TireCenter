@@ -5,9 +5,6 @@
 class DoublyLinkedListOfTires
 {
 public:
-	// We declare the constructor and destructor respectively:
-	~DoublyLinkedListOfTires();
-
 	void addTire(unsigned*);
 	void deleteTire(void);
 	void displayTires(void);

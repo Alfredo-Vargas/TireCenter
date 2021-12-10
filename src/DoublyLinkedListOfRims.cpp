@@ -3,14 +3,6 @@
 #include <iomanip>		// for simplifying printing out 
 #include "DoublyLinkedListOfRims.h"
 
-// head, tail and dummyHead and dummyTail are initialized with the following ID:
-// 9998 and 9999 values for width are set to bare in mind that every insertion will be ordered
-
-DoublyLinkedListOfRims::~DoublyLinkedListOfRims()
-{
-
-}
-
 void DoublyLinkedListOfRims::addRim(unsigned* lrn)
 {
 	std::string name, manufacturer, color, temp;

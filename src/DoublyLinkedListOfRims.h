@@ -5,9 +5,6 @@
 class DoublyLinkedListOfRims
 {
 public:
-	// We declare the constructor and destructor respectively:
-	~DoublyLinkedListOfRims();
-
 	void addRim(unsigned*);
 	void deleteRim(void);
 	void displayRims(void);
@@ -19,4 +16,3 @@ public:
 	RimNode* head;
 	RimNode* tail;
 };
-

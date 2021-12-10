@@ -7,8 +7,8 @@ class RimNode : public Article
 private:
 	std::string id;
 	std::string color;
-	float width;	   // given in inches unlike Tires (given in milimeters)
-	unsigned material; // if (0 is steel, 1 is aluminium)
+	float width = 0;	   // given in inches unlike Tires (given in milimeters) Initialized to avoid warning type.6
+	unsigned material = 0; // if (0 is steel, 1 is aluminium) Initialized to avoid warning type.6
 
 public:
 	float getWidth() { return width; }
@@ -24,6 +24,6 @@ public:
 	void setID(unsigned*);
 	void copyID(std::string);		// this is needed when want to retrieve data from a file!
 
-	RimNode* Prev;
-	RimNode* Next;
+	RimNode* Prev = {};
+	RimNode* Next = {};
 };

@@ -8,7 +8,7 @@ private:
 	std::string firstname;
 	std::string lastname;
 	std::string address;
-	unsigned type;	// 0 for private 1 for corporate
+	unsigned type = 0;				// 0 for private 1 for corporate. Initialized to avoid warning type.6
 public:
 	std::string getID() { return id; }
 	void setID(unsigned*);
@@ -26,6 +26,6 @@ public:
 	unsigned getType() { return type; }
 	void setType(unsigned);
 
-	CustomerNode* Prev;
-	CustomerNode* Next;
+	CustomerNode* Prev = nullptr;	// initialized to nullptr. To avoid warning type.6
+	CustomerNode* Next = nullptr;	// initialized to nullptr. To avoid warning type.6
 };

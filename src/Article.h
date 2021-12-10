@@ -6,10 +6,10 @@ class Article
 private:
 	std::string name;
 	std::string manufacturer;
-	int stock;
-	float diameter;	
-	float price;
-	unsigned type;	// to be used outside the class Article (Tire or Rim)
+	unsigned stock = 0;		// initialized to zero to avoid warning of type.6
+	float diameter = 0;		// initialized to zero to avoid warning of type.6
+	float price = 0;		// initialized to zero to avoid warning of type.6
+	unsigned type = 0;		// to be used outside the class Article (Tire or Rim) initialized to zero to avoid warning of type.6
 public:
 	std::string getArticleName() { return name; }
 	void setArticleName(std::string);
@@ -17,8 +17,8 @@ public:
 	std::string getArticleManufacturer() { return manufacturer; }
 	void setArticleManufacturer(std::string);
 
-	int getStockOfArticle() { return stock; }
-	void setStockOfArticle(int);
+	unsigned getStockOfArticle() { return stock; }
+	void setStockOfArticle(unsigned);
 
 	float getDiameterOfArticle() { return diameter; }
 	void setDiameterOfArticle(float);

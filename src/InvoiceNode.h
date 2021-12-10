@@ -9,7 +9,7 @@ class InvoiceNode
 {
 private:
 	std::string id;
-	Date date;
+	Date date = {};				// the curly brackets is to give a zero initialization
 	CustomerNode customer;
 
 	DoublyLinkedListOfTires* listOfTires;
@@ -28,9 +28,9 @@ public:
 	CustomerNode getCustomer() { return customer; }
 	void setCustomer(CustomerNode);
 
-	DoublyLinkedListOfTires cartOfTires;
-	DoublyLinkedListOfRims cartOfRims;
+	DoublyLinkedListOfTires cartOfTires = {};
+	DoublyLinkedListOfRims cartOfRims = {};
 
-	InvoiceNode* Prev;
-	InvoiceNode* Next;
+	InvoiceNode* Prev = {};
+	InvoiceNode* Next = {};
 };

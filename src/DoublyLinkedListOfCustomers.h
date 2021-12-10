@@ -5,9 +5,6 @@
 class DoublyLinkedListOfCustomers
 {
 public:
-	// We declare the constructor and destructor respectively:
-	~DoublyLinkedListOfCustomers();
-
 	void addCustomer(unsigned*);
 	void deleteCustomer(void);
 	void displayCustomers(void);

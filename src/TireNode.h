@@ -6,10 +6,10 @@ class TireNode : public Article
 {
 private:// height is missing (correct here and all dependencies)
 	std::string id;
-	float width;	// given in milimeters unlike Rims (given in inches)
-	float height;
-	char speedIndex;
-	unsigned seasson;
+	float width = 0;	// intialized to avoid warnings (always initialize a member variable - type.6)
+	float height = 0;	// intialized to avoid warnings (always initialize a member variable - type.6)
+	char speedIndex = 0;	// intialized to avoid warnings (always initialize a member variable - type.6)
+	unsigned seasson = 0;	// intialized to avoid warnings (always initialize a member variable - type.6)
 public:
 	float getWidth() { return width; }
 	void setWidth(float);
@@ -27,6 +27,6 @@ public:
 	std::string getID() { return id; }
 	void setID(unsigned*);
 
-	TireNode* Prev;
-	TireNode* Next;
+	TireNode* Prev = {};
+	TireNode* Next = {};
 };

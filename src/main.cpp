@@ -1,4 +1,9 @@
-/*  CACHE MEMORY CHANGES THE PERFORMANCE OF OPERATIONS OF ARRAYS VS 
+/*  
+	This application uses linked list instead of vector for practicing new data types.
+	Real implementations should use instead Vectors, which perform better than lists
+	even for deletion or middle insertion.
+	References:
+	CACHE MEMORY CHANGES THE PERFORMANCE OF OPERATIONS OF ARRAYS VS 
 	LINKED LISTS https://www.youtube.com/watch?v=DyG9S9nAlUM&ab_channel=Computerphile
 */
 #include <iostream>

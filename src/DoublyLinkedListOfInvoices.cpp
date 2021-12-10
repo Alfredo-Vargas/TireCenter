@@ -4,11 +4,6 @@
 #include "DoublyLinkedListOfInvoices.h"
 #include "DoublyLinkedListOfCustomers.h"
 
-DoublyLinkedListOfInvoices::~DoublyLinkedListOfInvoices()
-{
-
-}
-
 void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTires* listOfTires, DoublyLinkedListOfRims* listOfRims, DoublyLinkedListOfCustomers* listOfCustomers)
 {
 	TireNode* pointerToTire, *tireToBuy, *beforeTire, *tireHead, *tireTail;
@@ -16,7 +11,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 	CustomerNode* pointerToCustomer;
 	std::string customerID, tireID, rimID, trash;
 	unsigned quantity, newStock, setCounterOfTires = 0, setCounterOfRims = 0;
-	float totalPrice = 0, discount;
+	float totalPrice = 0, discount, percentageDiscount = 0.10f, extraDiscount = 0.20f;	// Basic discount 10%, Extra discount 20%, f indicates is float instead of double (without f)
 	bool getDiscount = false;
 	char userAction;
 
@@ -147,7 +142,7 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 					else
 					{
 						// The minimum quantity for a set is 2, therefore the number of sets of tires is given by:
-						setCounterOfTires += quantity / 2;
+						setCounterOfTires += quantity / 4;
 						// We update the Stock when placing an order
 						newStock = pointerToTire->getStockOfArticle() - quantity;
 						pointerToTire->setStockOfArticle(newStock);
@@ -221,15 +216,19 @@ void DoublyLinkedListOfInvoices::placeOrder(unsigned* lin, DoublyLinkedListOfTir
 		/*
 			DISCOUNT IMPLEMENTATION
 		*/
-		if (pointerToCustomer->getType() == 0 && setCounterOfTires > 1 )
+		// Private Customers get a discount when purchasing of four Tires
+		if (pointerToCustomer->getType() == 0 && setCounterOfTires >= 1 )
 		{
 			getDiscount = true;
-			discount = setCounterOfRims > 1 ? 0.40 * totalPrice : 0.25 * totalPrice;
+			// Private Customers get an extra discount when purchasing a matching set of rims
+			discount = setCounterOfRims >= 1 ? extraDiscount * totalPrice : percentageDiscount * totalPrice;
 		}
+		// Corporate Customers get a discount when purchasing 10 sets or more
 		else if (pointerToCustomer->getType() == 1 && (setCounterOfTires + setCounterOfRims >= 10))
 		{
 			getDiscount = true;
-			discount = 0.25 * totalPrice;
+			discount = percentageDiscount * totalPrice;
+			// No extra discount for Corporate Customers only the basic percentageDiscount
 		}
 
 		if (!getDiscount)
@@ -265,9 +264,9 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 	RimNode* tempRim;
 	std::string fullname, fulldate, customerType;
 	unsigned cw1 = 16, cw2 = 10, cw3 = 6, cw4 = 24;				// Column width1, widht2, width3, width4
-	float subtotal, totalPrice, discount;
+	float subtotal, totalPrice, discount, percentageDiscount = 0.25;	// 25% discount!! Quite generous
 	unsigned setCounterOfTires = 0, setCounterOfRims = 0;
-	bool getDiscount;
+	bool getDiscount = true;
 
 	if (Current->getID() == tail->getID())
 	{
@@ -327,12 +326,12 @@ void DoublyLinkedListOfInvoices::displayInvoices(void)
 			if (customerType == "private" && setCounterOfTires > 1 )
 			{
 				getDiscount = true;
-				discount = setCounterOfRims > 1 ? 0.25 * totalPrice : 0;
+				discount = setCounterOfRims > 1 ? percentageDiscount * totalPrice : 0;
 			}
 			else if (customerType == "corporate" && (setCounterOfTires + setCounterOfRims >= 10))
 			{
 				getDiscount = true;
-				discount = 0.25 * totalPrice;
+				discount = percentageDiscount * totalPrice;
 			}
 			if (!getDiscount)
 			{

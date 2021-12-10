@@ -10,7 +10,7 @@ void Article::setArticleManufacturer(std::string newManufacturer)
 {
 	manufacturer = newManufacturer;
 }
-void Article::setStockOfArticle(int newStock)
+void Article::setStockOfArticle(unsigned newStock)
 {
 	stock = newStock;
 }

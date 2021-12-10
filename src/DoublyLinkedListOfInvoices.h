@@ -5,8 +5,6 @@
 class DoublyLinkedListOfInvoices
 {
 public:
-	~DoublyLinkedListOfInvoices();
-
 	void placeOrder(unsigned*, DoublyLinkedListOfTires*, DoublyLinkedListOfRims*, DoublyLinkedListOfCustomers*);   // we add an invoice
 	void displayInvoices(void);
 	void loadFromFile(void);
