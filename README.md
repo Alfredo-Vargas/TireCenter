@@ -1,10 +1,17 @@
 # TireCenter
 This code is part of the assignment of the Course: Objected Oriented Programming part of the career Electronics ICT/AI from the Institute Thomas More (Belgium)
 #
-# NOTE:
+## NOTE:
 For training purposes we implemented from scratch a Double Linked List.
 Real implementations of this program should use the built-in list data type in C++ or even better just a vector:
-# Check reasons why vectors are better than Linked Lists:
+
+## Class Diagram
+### https://github.com/Alfredo-Vargas/TireCenter/blob/master/Tire%20Center%20Class.png
+
+## User Case Diagram
+### https://github.com/Alfredo-Vargas/TireCenter/blob/master/Tire%20Center%20Use%20Case.png
+
+## Check reasons why vectors are better than Linked Lists:
 ### https://www.youtube.com/watch?v=YQs6IC-vgmo&t=74s&ab_channel=AlessandroStamatto
 ### https://www.youtube.com/watch?v=DyG9S9nAlUM&t=2s&ab_channel=Computerphile
 ### https://www.geeksforgeeks.org/linked-list-vs-array/
