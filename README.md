@@ -9,7 +9,7 @@ Real implementations of this program should use the built-in list data type in C
 ![Class] (Tire-Center-Class.png)
 
 ## User Case Diagram
-![Class] (Tire-Center-Use-Case.png)
+![Use Case] (Tire-Center-Use-Case.png)
 
 ## Check reasons why vectors are better than Linked Lists:
 ### https://www.youtube.com/watch?v=YQs6IC-vgmo&t=74s&ab_channel=AlessandroStamatto
