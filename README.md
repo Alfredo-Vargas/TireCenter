@@ -6,10 +6,10 @@ For training purposes we implemented from scratch a Double Linked List.
 Real implementations of this program should use the built-in list data type in C++ or even better just a vector:
 
 ## Class Diagram
-![Class] (./blob/master/Tire-Center-Class.png)
+![Class Diagram] (https://github.com/Alfredo-Vargas/TireCenter/blob/master/Tire-Center-Class.png)
 
 ## User Case Diagram
-![Use Case] (./blob/master/Tire-Center-Use-Case.png)
+![Use Case Diagram] (https://github.com/Alfredo-Vargas/TireCenter/blob/master/Tire-Center-Use-Case.png)
 
 ## Check reasons why vectors are better than Linked Lists:
 ### https://www.youtube.com/watch?v=YQs6IC-vgmo&t=74s&ab_channel=AlessandroStamatto
